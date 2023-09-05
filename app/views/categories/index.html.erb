@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <%= form_with(model: @category, url: categories_path) do |f| %>
+        <%= f.label :name, "カテゴリ名" %>
+        <%= f.text_field :name %>
+        <%= f.submit "追加" %>
+      <% end %>
+    </div>
+    
+    <div class="col-md-8">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>
+              カテゴリ名
+            </th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @categories.each do |category| %>
+            <tr>
+              <td>
+                <%= category.name %>
+              </td>
+              <td>
+                <%= link_to "編集", edit_category_path(category) %>
+              </td>
+              <td>
+                <%= link_to "削除", category_path(category), data: { turbo_method: :delete } %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

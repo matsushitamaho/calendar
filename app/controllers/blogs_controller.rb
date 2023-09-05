@@ -2,6 +2,7 @@ class BlogsController < ApplicationController
   def index
     @blogs = Blog.all
     @blog = Blog.new
+    @categories = Category.all
   end
   
   def new
@@ -25,6 +26,7 @@ class BlogsController < ApplicationController
   
   def edit
     @blog = Blog.find(params[:id])
+    @categories = Category.all
   end
   
   def update
@@ -32,13 +34,13 @@ class BlogsController < ApplicationController
     if @blog.update(blog_parameter)
       redirect_to blog_path
     else
-      render edit
+      render 'edit'
     end
   end
   
   private
   
   def blog_parameter
-    params.require(:blog).permit(:title, :content, :start_time)
+    params.require(:blog).permit(:title, :content, :start_time, :category_id)
   end
 end
