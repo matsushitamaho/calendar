@@ -1,7 +1,7 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <h3>予定の追加</h3>
+<div class="container pt-5">
+  <div class="row mt-5">
+    <div class="col-md-4 mt-5">
+      <h3>予定作成</h3>
       <%= form_with(model: @blog, local: true) do |form| %>
         <div class="title">
           <div class="form-tag">タイトル</div>
@@ -24,12 +24,14 @@
       <% end %>
     </div>
     
-    <div class="col-md-8">
+    <div class="col-md-8 mt-5">
       <%= month_calendar events: @blogs do |date, blogs| %>
         <%= date.day %>
         
         <% blogs.each do |blog| %>
-          <div><%= link_to blog.title, blog %></div>
+          <div style="font-size:13px;">
+            <%= link_to blog.title, blog, class: "text-decoration-none", style: "color:black" %>
+          </div>
         <% end %>
       <% end %>
     </div>
