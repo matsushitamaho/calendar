@@ -2,37 +2,32 @@
   <div class="row mt-5">
     <div class="col-md-4 mt-5">
       <h3>予定作成</h3>
-      <%= form_with(model: @blog, local: true) do |f| %>
+      <%= form_with(model: @blog, local: true) do |form| %>
         <div class="title">
           <div class="form-tag">タイトル</div>
-          <%= f.text_field :title %>
+          <%= form.text_field :title %>
         </div>
-
+        
         <div class="content">
           <div class="form-tag">内容</div>
-          <%= f.text_field :content %>
+          <%= form.text_field :content %>
         </div>
-
+        
         <div class="time">
           <div class="form-tag">時間</div>
-          <%= f.datetime_select :start_time %>
+          <%= form.datetime_select :start_time %>
         </div>
-
-        <div class="category">
-          <div class="form-tag">カテゴリ</div>
-          <%= f.collection_select :category_id, @categories, :id, :name, { prompt: '選択してください' } %>
-        </div>
-
+        
         <div class="submit">
-          <%= f.submit %>
+          <%= form.submit %>
         </div>
       <% end %>
     </div>
-
+    
     <div class="col-md-8 mt-5">
       <%= month_calendar events: @blogs do |date, blogs| %>
         <%= date.day %>
-
+        
         <% blogs.each do |blog| %>
           <div style="font-size:13px;">
             <%= link_to blog.title, blog, class: "text-decoration-none", style: "color:black" %>
